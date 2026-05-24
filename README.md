@@ -85,6 +85,25 @@ Fetch all products with warehouse inventory.
 GET /api/warehouses
 ---
 
+## Warehouses
+
+```http
+GET /api/warehouses
+```
+
+Returns all warehouses, sorted by name.
+
+Example response:
+
+```json
+[
+  { "id": "...", "name": "Bangalore Warehouse" },
+  { "id": "...", "name": "Chennai Warehouse" }
+]
+```
+
+---
+
 ## Create Reservation
 ```http
 POST /api/reserve
@@ -115,7 +134,9 @@ Confirms a pending reservation.
 POST /api/reserve/[reservationId]/release
 ```
 
-Cancels/releases reservation and restores stock.
+Cancels/releases a **pending** reservation and restores stock.
+
+Only `PENDING` reservations can be released. Returns `400` if the reservation is `CONFIRMED` or already `RELEASED`.
 
 ---
 
