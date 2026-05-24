@@ -1,11 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient({
- 
-});
+const prisma = new PrismaClient({});
 
 async function main() {
-
   const warehouse1 = await prisma.warehouse.create({
     data: {
       name: "Chennai Warehouse",

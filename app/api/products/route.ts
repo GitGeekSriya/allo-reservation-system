@@ -1,6 +1,6 @@
+import { NextResponse } from "next/server";
 import { cleanupExpiredReservations } from "@/lib/cleanupExpiredReservations";
 import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -17,12 +17,10 @@ export async function GET() {
     });
 
     return NextResponse.json(products);
-
-  } catch (error) {
-
+  } catch (_error) {
     return NextResponse.json(
       { error: "Failed to fetch products" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

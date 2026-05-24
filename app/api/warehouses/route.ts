@@ -3,23 +3,18 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const reservations = await prisma.reservation.findMany({
-      include: {
-        product: true,
-      },
+    const warehouses = await prisma.warehouse.findMany({
       orderBy: {
-        createdAt: "desc",
+        name: "asc",
       },
     });
 
-    return NextResponse.json(reservations);
+    return NextResponse.json(warehouses);
   } catch (error) {
     console.error(error);
 
     return NextResponse.json(
-      {
-        error: "Failed to fetch reservations",
-      },
+      { error: "Failed to fetch warehouses" },
       { status: 500 },
     );
   }
