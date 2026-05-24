@@ -47,6 +47,20 @@ export async function POST(
       );
     }
 
+    if (
+      reservation.status ===
+      "CONFIRMED"
+    ) {
+
+      return NextResponse.json(
+        {
+          error:
+            "Cannot release a confirmed reservation",
+        },
+        { status: 400 }
+      );
+    }
+
     await prisma.$transaction(
       async (tx) => {
 
