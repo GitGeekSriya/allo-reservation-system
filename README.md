@@ -295,23 +295,6 @@ Production stack:
 
 ---
 
-# Application Screenshots
-
-## Inventory Dashboard
-
-<img src="./screenshots/Dashboard.png" width="900" />
-
----
-
-## Reservation Checkout
-
-<img src="./screenshots/Reservation.png" width="900" />
-
----
-
-## Confirmed Reservation
-
-<img src="./screenshots/Checkout.png" width="900" />
 
 # Author
 
