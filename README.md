@@ -87,18 +87,8 @@ GET /api/warehouses
 
 
 
-Returns all warehouses, sorted by name.
 
-Example response:
 
-```json
-[
-  { "id": "...", "name": "Bangalore Warehouse" },
-  { "id": "...", "name": "Chennai Warehouse" }
-]
-```
-
----
 
 ## Create Reservation
 ```http
