@@ -3,7 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(
   request: Request,
-  context: { params: Promise<{ reservationId: string }> }
+  context: {
+    params: Promise<{
+      reservationId: string;
+    }>;
+  }
 ) {
 
   try {
@@ -31,6 +35,36 @@ export async function POST(
             "Reservation not found",
         },
         { status: 404 }
+      );
+    }
+
+    if (
+      reservation.expiresAt <
+        new Date() &&
+      reservation.status ===
+        "PENDING"
+    ) {
+
+      return NextResponse.json(
+        {
+          error:
+            "Reservation expired",
+        },
+        { status: 410 }
+      );
+    }
+
+    if (
+      reservation.status ===
+      "CONFIRMED"
+    ) {
+
+      return NextResponse.json(
+        {
+          error:
+            "Reservation already confirmed",
+        },
+        { status: 400 }
       );
     }
 
