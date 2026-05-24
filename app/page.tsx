@@ -1,6 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 
 type Product = {
   id: string;
@@ -28,9 +31,10 @@ export default function Home() {
 
     try {
 
-      const response = await fetch(
-        "/api/products"
-      );
+      const response =
+        await fetch(
+          "/api/products"
+        );
 
       const data =
         await response.json();
@@ -54,21 +58,22 @@ export default function Home() {
 
     try {
 
-      const response = await fetch(
-        "/api/reserve",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            productId,
-            warehouseId,
-            quantity: 1,
-          }),
-        }
-      );
+      const response =
+        await fetch(
+          "/api/reserve",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+            body: JSON.stringify({
+              productId,
+              warehouseId,
+              quantity: 1,
+            }),
+          }
+        );
 
       const data =
         await response.json();
@@ -80,7 +85,7 @@ export default function Home() {
       }
 
       window.location.href =
-      `/reservation/${data.id}`;
+        `/reservation/${data.id}`;
 
     } catch (error) {
 
@@ -89,13 +94,15 @@ export default function Home() {
   }
 
   useEffect(() => {
+
     fetchProducts();
+
   }, []);
 
   if (loading) {
 
     return (
-      <div className="p-10">
+      <div className="p-10 text-xl">
         Loading...
       </div>
     );
@@ -103,7 +110,7 @@ export default function Home() {
 
   return (
 
-    <main className="p-10">
+    <main className="p-10 min-h-screen bg-gray-100">
 
       <h1 className="text-4xl font-bold mb-8">
         Inventory Dashboard
@@ -115,7 +122,7 @@ export default function Home() {
 
           <div
             key={product.id}
-            className="border rounded-xl p-6 shadow"
+            className="bg-white border rounded-2xl p-6 shadow"
           >
 
             <h2 className="text-2xl font-semibold mb-4">
@@ -135,38 +142,62 @@ export default function Home() {
 
                     <div
                       key={item.id}
-                      className="border rounded-lg p-4 flex items-center justify-between"
+                      className="border rounded-xl p-4 flex items-center justify-between bg-gray-50"
                     >
 
                       <div>
 
-                        <p className="font-medium">
+                        <p className="font-semibold text-lg">
                           {
                             item.warehouse
                               .name
                           }
                         </p>
 
-                        <p>
-                          Total Stock:{" "}
+                        <p className="mt-1">
+                          Total Stock:
+                          {" "}
                           {
                             item.totalStock
                           }
                         </p>
 
                         <p>
-                          Reserved:{" "}
+                          Reserved:
+                          {" "}
                           {
                             item.reservedStock
                           }
                         </p>
 
-                        <p>
-                          Available:{" "}
+                        <p
+                          className={
+                            availableStock <= 2
+                              ? "text-red-600 font-semibold"
+                              : "text-green-600 font-semibold"
+                          }
+                        >
+                          Available:
+                          {" "}
                           {
                             availableStock
                           }
                         </p>
+
+                        {availableStock <= 2 &&
+                         availableStock > 0 && (
+
+                          <p className="text-orange-600 font-medium mt-1">
+                            Low Stock Alert
+                          </p>
+                        )}
+
+                        {availableStock === 0 && (
+
+                          <p className="text-red-700 font-bold mt-1">
+                            Out Of Stock
+                          </p>
+                        )}
 
                       </div>
 
@@ -177,9 +208,20 @@ export default function Home() {
                             item.warehouse.id
                           )
                         }
-                        className="bg-black text-white px-4 py-2 rounded-lg"
+                        disabled={
+                          availableStock <= 0
+                        }
+                        className={`px-4 py-2 rounded-lg text-white transition ${
+                          availableStock <= 0
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-black hover:bg-gray-800"
+                        }`}
                       >
-                        Reserve
+
+                        {availableStock <= 0
+                          ? "Out Of Stock"
+                          : "Reserve"}
+
                       </button>
 
                     </div>
