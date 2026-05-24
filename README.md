@@ -280,6 +280,8 @@ Errors are displayed directly to the user through frontend alerts.
 - Add WebSocket live inventory updates
 - Improve mobile responsiveness
 - Add automated testing
+## Bonus
+-Idempotency keys were not implemented in this version, but the API structure was designed to support future extension for retry-safe reservation flows.
 
 ---
 
