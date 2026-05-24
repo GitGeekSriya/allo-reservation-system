@@ -14,10 +14,12 @@ The application allows users to:
 
 # Live Demo
 
-Vercel Deployment:
+The application has been successfully deployed on Vercel and is publicly accessible using the link below.
+
+Vercel Deployment:  
 https://allo-reservation-system-beta.vercel.app/
 
-GitHub Repository:
+GitHub Repository:  
 https://github.com/GitGeekSriya/allo-reservation-system
 
 ---
@@ -80,18 +82,31 @@ GET /api/products
 Fetch all products with warehouse inventory.
 
 ---
+
 ## Warehouses
 ```http
 GET /api/warehouses
+```
+
+Fetch all warehouses.
+
 ---
 
+## Create Reservation
+```http
+POST /api/reserve
+```
 
+Request Body:
+```json
+{
+  "productId": "PRODUCT_ID",
+  "warehouseId": "WAREHOUSE_ID",
+  "quantity": 1
+}
+```
 
-
-
-
-
-
+---
 
 ## Confirm Reservation
 ```http
@@ -285,6 +300,7 @@ Errors are displayed directly to the user through frontend alerts.
 - Add authentication and role-based access
 - Add WebSocket live inventory updates
 - Add automated testing
+
 ## Bonus
 Idempotency keys were not implemented in this version, but the API structure was designed to support future extension for retry-safe reservation flows.
 
@@ -299,7 +315,6 @@ Production stack:
 - Database: Supabase PostgreSQL
 
 ---
-
 
 # Author
 
