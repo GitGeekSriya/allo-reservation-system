@@ -64,7 +64,7 @@ export async function POST(req: Request) {
               status: "PENDING",
               expiresAt: new Date(
                 Date.now() +
-                10 * 1000
+                15 * 60 * 1000
               ),
             },
           });
