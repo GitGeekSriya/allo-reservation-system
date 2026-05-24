@@ -123,14 +123,14 @@ export default function Home() {
   }
 
   return (
-    <main className="p-10 min-h-screen bg-gray-100">
+    <main className="p-10 min-h-screen bg-background">
       <h1 className="text-4xl font-bold mb-8">Inventory Dashboard</h1>
 
       <div className="grid gap-6">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white border rounded-2xl p-6 shadow"
+            className="bg-card border border-foreground/10 rounded-2xl p-6 shadow"
           >
             <h2 className="text-2xl font-semibold mb-4">{product.name}</h2>
 
@@ -204,7 +204,7 @@ export default function Home() {
           {reservations.map((reservation) => (
             <div
               key={reservation.id}
-              className="bg-white border rounded-xl p-4 flex items-center justify-between"
+              className="bg-card border border-foreground/10 rounded-xl p-4 flex items-center justify-between"
             >
               <div>
                 <p className="text-lg font-bold mb-1">

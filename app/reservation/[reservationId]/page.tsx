@@ -117,7 +117,7 @@ export default function ReservationPage({
     <main className="p-10">
       <h1 className="text-4xl font-bold mb-6">Reservation Checkout</h1>
 
-      <div className="border rounded-xl p-6 max-w-xl">
+      <div className="bg-card border border-foreground/10 rounded-xl p-6 max-w-xl">
         <p className="mb-2">Reservation ID: {reservation.id}</p>
 
         <p className="mb-2">Quantity: {reservation.quantity}</p>
