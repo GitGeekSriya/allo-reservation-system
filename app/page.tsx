@@ -23,6 +23,9 @@ type Reservation = {
   id: string;
   status: string;
   quantity: number;
+  product: {
+    name: string;
+  };
 };
 
 export default function Home() {
@@ -328,23 +331,27 @@ export default function Home() {
 
                 <div>
 
-                  <p className="font-semibold">
-                    {reservation.id}
-                  </p>
+  <p className="text-lg font-bold mb-1">
+    {reservation.product.name}
+  </p>
 
-                  <p>
-                    Status:
-                    {" "}
-                    {reservation.status}
-                  </p>
+  <p className="font-semibold">
+    {reservation.id}
+  </p>
 
-                  <p>
-                    Quantity:
-                    {" "}
-                    {reservation.quantity}
-                  </p>
+  <p>
+    Status:
+    {" "}
+    {reservation.status}
+  </p>
 
-                </div>
+  <p>
+    Quantity:
+    {" "}
+    {reservation.quantity}
+  </p>
+
+</div>
 
                 {reservation.status ===
                   "PENDING" && (

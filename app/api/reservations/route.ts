@@ -6,11 +6,14 @@ export async function GET() {
   try {
 
     const reservations =
-      await prisma.reservation.findMany({
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
+  await prisma.reservation.findMany({
+    include: {
+      product: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
     return NextResponse.json(
       reservations
