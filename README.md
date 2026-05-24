@@ -15,7 +15,7 @@ The application allows users to:
 # Live Demo
 
 Vercel Deployment:
-https://allo-reservation-system-38fdfifek-sriya-chilukuri-s-projects.vercel.app
+https://allo-reservation-system-beta.vercel.app/
 
 GitHub Repository:
 https://github.com/GitGeekSriya/allo-reservation-system
