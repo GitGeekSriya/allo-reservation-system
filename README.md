@@ -85,11 +85,7 @@ Fetch all products with warehouse inventory.
 GET /api/warehouses
 ---
 
-## Warehouses
 
-```http
-GET /api/warehouses
-```
 
 Returns all warehouses, sorted by name.
 
