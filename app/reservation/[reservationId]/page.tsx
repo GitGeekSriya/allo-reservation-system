@@ -124,7 +124,7 @@ export default function ReservationPage({
 
         <p className="mb-2">Status: {reservation.status}</p>
 
-        <p className="mb-6 text-red-600 font-semibold">
+        <p className="mb-6 text-red-600 dark:text-red-400 font-semibold">
           {reservation.status === "PENDING"
             ? `Expires in: ${timeLeft}`
             : reservation.status === "CONFIRMED"
@@ -155,7 +155,7 @@ export default function ReservationPage({
         <button
           type="button"
           onClick={() => (window.location.href = "/")}
-          className="border px-4 py-2 rounded-lg"
+          className="border border-foreground/20 px-4 py-2 rounded-lg hover:bg-muted"
         >
           Back to Dashboard
         </button>

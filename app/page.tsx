@@ -141,7 +141,7 @@ export default function Home() {
                 return (
                   <div
                     key={item.id}
-                    className="border rounded-xl p-4 flex items-center justify-between bg-gray-50"
+                    className="border border-foreground/10 rounded-xl p-4 flex items-center justify-between bg-muted"
                   >
                     <div>
                       <p className="font-semibold text-lg">
@@ -155,21 +155,21 @@ export default function Home() {
                       <p
                         className={
                           availableStock <= 2
-                            ? "text-red-600 font-semibold"
-                            : "text-green-600 font-semibold"
+                            ? "text-red-600 dark:text-red-400 font-semibold"
+                            : "text-green-600 dark:text-green-400 font-semibold"
                         }
                       >
                         Available: {availableStock}
                       </p>
 
                       {availableStock <= 2 && availableStock > 0 && (
-                        <p className="text-orange-600 font-medium mt-1">
+                        <p className="text-orange-600 dark:text-orange-400 font-medium mt-1">
                           Low Stock Alert
                         </p>
                       )}
 
                       {availableStock === 0 && (
-                        <p className="text-red-700 font-bold mt-1">
+                        <p className="text-red-700 dark:text-red-400 font-bold mt-1">
                           Out Of Stock
                         </p>
                       )}
@@ -181,10 +181,10 @@ export default function Home() {
                         reserveStock(product.id, item.warehouse.id)
                       }
                       disabled={availableStock <= 0}
-                      className={`px-4 py-2 rounded-lg text-white transition ${
+                      className={`px-4 py-2 rounded-lg transition ${
                         availableStock <= 0
-                          ? "bg-gray-400 cursor-not-allowed"
-                          : "bg-black hover:bg-gray-800"
+                          ? "bg-foreground/20 text-foreground/50 cursor-not-allowed"
+                          : "bg-foreground text-background hover:opacity-90"
                       }`}
                     >
                       {availableStock <= 0 ? "Out Of Stock" : "Reserve"}
