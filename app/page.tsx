@@ -19,10 +19,20 @@ type Product = {
   }[];
 };
 
+type Reservation = {
+  id: string;
+  status: string;
+  quantity: number;
+};
+
 export default function Home() {
 
   const [products, setProducts] =
     useState<Product[]>([]);
+
+  const [reservations,
+    setReservations] =
+    useState<Reservation[]>([]);
 
   const [loading, setLoading] =
     useState(true);
@@ -48,6 +58,26 @@ export default function Home() {
     } finally {
 
       setLoading(false);
+    }
+  }
+
+  async function fetchReservations() {
+
+    try {
+
+      const response =
+        await fetch(
+          "/api/reservations"
+        );
+
+      const data =
+        await response.json();
+
+      setReservations(data);
+
+    } catch (error) {
+
+      console.error(error);
     }
   }
 
@@ -84,8 +114,51 @@ export default function Home() {
         return;
       }
 
+      alert(
+        "Reservation created"
+      );
+
+      fetchProducts();
+      fetchReservations();
+
       window.location.href =
         `/reservation/${data.id}`;
+
+    } catch (error) {
+
+      console.error(error);
+    }
+  }
+
+  async function cancelReservation(
+    reservationId: string
+  ) {
+
+    try {
+
+      const response =
+        await fetch(
+          `/api/reserve/${reservationId}/release`,
+          {
+            method: "POST",
+          }
+        );
+
+      const data =
+        await response.json();
+
+      if (!response.ok) {
+
+        alert(data.error);
+        return;
+      }
+
+      alert(
+        "Reservation cancelled"
+      );
+
+      fetchProducts();
+      fetchReservations();
 
     } catch (error) {
 
@@ -96,6 +169,7 @@ export default function Home() {
   useEffect(() => {
 
     fetchProducts();
+    fetchReservations();
 
   }, []);
 
@@ -233,6 +307,65 @@ export default function Home() {
 
           </div>
         ))}
+
+      </div>
+
+      <div className="mt-12">
+
+        <h2 className="text-3xl font-bold mb-6">
+          Active Reservations
+        </h2>
+
+        <div className="grid gap-4">
+
+          {reservations.map(
+            (reservation) => (
+
+              <div
+                key={reservation.id}
+                className="bg-white border rounded-xl p-4 flex items-center justify-between"
+              >
+
+                <div>
+
+                  <p className="font-semibold">
+                    {reservation.id}
+                  </p>
+
+                  <p>
+                    Status:
+                    {" "}
+                    {reservation.status}
+                  </p>
+
+                  <p>
+                    Quantity:
+                    {" "}
+                    {reservation.quantity}
+                  </p>
+
+                </div>
+
+                {reservation.status ===
+                  "PENDING" && (
+
+                  <button
+                    onClick={() =>
+                      cancelReservation(
+                        reservation.id
+                      )
+                    }
+                    className="bg-red-600 text-white px-4 py-2 rounded-lg"
+                  >
+                    Cancel
+                  </button>
+                )}
+
+              </div>
+            )
+          )}
+
+        </div>
 
       </div>
 
