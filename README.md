@@ -40,6 +40,8 @@ https://github.com/GitGeekSriya/allo-reservation-system
 - Available stock calculation
 - Low-stock alerts
 - Out-of-stock handling
+- Cancel reservations directly from dashboard
+- Product-linked reservation tracking
 
 ## Reservation System
 - Reserve inventory temporarily
@@ -58,7 +60,13 @@ https://github.com/GitGeekSriya/allo-reservation-system
 
 ## Reservation Management
 - Active reservations dashboard
-- Cancel reservations directly from dashboard
+- Cancel pending reservations directly from dashboard
+- View all reservations with product information
+- Track reservation status
+
+## Business Rules
+- Only `PENDING` reservations can be released/cancelled
+- `CONFIRMED` reservations cannot be released (API returns `400`)
 
 ---
 
@@ -71,6 +79,10 @@ GET /api/products
 
 Fetch all products with warehouse inventory.
 
+---
+## Warehouses
+```http
+GET /api/warehouses
 ---
 
 ## Create Reservation
@@ -278,7 +290,6 @@ Errors are displayed directly to the user through frontend alerts.
 - Add analytics dashboards/charts
 - Add authentication and role-based access
 - Add WebSocket live inventory updates
-- Improve mobile responsiveness
 - Add automated testing
 ## Bonus
 Idempotency keys were not implemented in this version, but the API structure was designed to support future extension for retry-safe reservation flows.
