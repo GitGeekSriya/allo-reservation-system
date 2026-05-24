@@ -90,21 +90,8 @@ GET /api/warehouses
 
 
 
-## Create Reservation
-```http
-POST /api/reserve
-```
 
-Request Body:
-```json
-{
-  "productId": "PRODUCT_ID",
-  "warehouseId": "WAREHOUSE_ID",
-  "quantity": 1
-}
-```
 
----
 
 ## Confirm Reservation
 ```http
