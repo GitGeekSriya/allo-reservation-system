@@ -68,7 +68,7 @@ https://github.com/GitGeekSriya/allo-reservation-system
 
 ## Business Rules
 - Only `PENDING` reservations can be released/cancelled
-- `CONFIRMED` reservations cannot be released (API returns `400`)
+- `CONFIRMED` reservations cannot be released 
 
 ---
 
